@@ -13,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
         print("Hasta pronto")
         return True
 
+
     def do_EOF(self, args):
         """Ayuda del comando1"""
         return True
