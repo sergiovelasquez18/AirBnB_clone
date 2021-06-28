@@ -2,7 +2,7 @@
 
 import uuid
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel():
@@ -16,12 +16,12 @@ class BaseModel():
         '''
         if len(kwargs) > 0:
             for key, value in kwargs.items():
-                if(key == '__class__'):
+                if key == '__class__':
                     pass
-                elif(key == 'created_at'):
+                elif key == 'created_at':
                     self.created_at = datetime.strptime(
                     value, '%Y-%m-%dT%H:%M:%S.%f')
-                elif(key == 'updated_at'):
+                elif key == 'updated_at':
                     self.updated_at = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 else:
                     setattr(self, key, value)
@@ -29,7 +29,7 @@ class BaseModel():
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
-        storage.new(self)
+            # models.storage.new(self)
         
     def __str__(self):
         '''str magic method returns the characteristics of the object'''
@@ -42,12 +42,10 @@ class BaseModel():
 
     def to_dict(self):
         ''' returns a dictionary containing all keys/values of __dict__ of the instance'''
-        return {'my_number': self.my_number,
-                'name': self.name,
-                '__class__': self.__class__.__name__,
-                'updated_at': str(self.updated_at.isoformat()),
-                'id': self.id,
-                'created_at': str(self.created_at.isoformat())}
+        new_dict = self.__dict__.copy()
+        new_dict["created_at"] = str(self.created_at.isoformat())
+        new_dict["updated_at"] = str(self.updated_at.isoformat())
+        return new_dict
 
     def create(cls, **dictionary):
         '''returns an instance with all attributes already set'''
