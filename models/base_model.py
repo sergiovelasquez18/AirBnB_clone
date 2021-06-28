@@ -2,6 +2,7 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel():
@@ -28,8 +29,8 @@ class BaseModel():
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
-
-
+        storage.new(self)
+        
     def __str__(self):
         '''str magic method returns the characteristics of the object'''
         return ("[{}] ( {} {})".format(type(self).__name__, self.id, self.__dict__))
@@ -37,6 +38,7 @@ class BaseModel():
     def save(self):
         '''updates the public instance attribute updated_at with the current datetime'''
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         ''' returns a dictionary containing all keys/values of __dict__ of the instance'''
@@ -50,11 +52,11 @@ class BaseModel():
     def create(cls, **dictionary):
         '''returns an instance with all attributes already set'''
         temp_inst = cls(1)
-        a_inst.update(**dictionary)
+        temp_inst.update(**dictionary)
         return temp_inst
 
 
-my_model = BaseModel()
+"""my_model = BaseModel()
 my_model.name = "Holberton"
 my_model.my_number = 89
 print(my_model.id)
@@ -75,9 +77,4 @@ print(my_new_model)
 print(type(my_new_model.created_at))
 
 print("--")
-print(my_model is my_new_model)
-
-
-
-
-
+print(my_model is my_new_model)"""
