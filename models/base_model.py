@@ -30,11 +30,10 @@ class BaseModel():
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
             models.storage.new(self)
-            models.storage.save()
-        
+
     def __str__(self):
         '''str magic method returns the characteristics of the object'''
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return ("[{}] ( {} {})".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
         '''updates the public instance attribute updated_at with the current datetime'''
