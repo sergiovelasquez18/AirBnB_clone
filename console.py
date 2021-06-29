@@ -6,19 +6,21 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     """HBNBcosole"""
-    prompt = "(hbnb) "
+    prompt = "(hbnb)"
 
     def do_quit(self, args):
-        """Ayuda del comando1"""
-        print("Hasta pronto")
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, args):
-        """Ayuda del comando1"""
+        """Ctrl D command to exit the program"""
         return True
 
     def emptyline(self):
-        pass
+        """command added to avoid that an empty
+        line + ENTER executes anything
+        """
+        return cmd.Cmd.postloop(self)
 
 
 if __name__ == '__main__':
