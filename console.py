@@ -2,6 +2,10 @@
 """console"""
 
 import cmd
+from models.base_model import BaseModel
+import models
+
+clss_list = {'BaseModel': BaseModel}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -22,6 +26,40 @@ class HBNBCommand(cmd.Cmd):
         """
         return cmd.Cmd.postloop(self)
 
+<<<<<<< HEAD
+=======
+    def do_create(self, cmds):
+        """
+        creates a new instance of a class
+        """
+        commands = cmds.split(' ')
+        if not commands[0]:
+            print("** class name missing **")
+        elif commands[0] not in clss_list:
+            print("** class doesn't exist **")
+        else:
+            instance = BaseModel()
+            print(instance.id)
+            instance.save()
+
+    def do_show(self, cmds):
+        """
+        Prints the string representation of an
+        instance based on the class name and id
+        """
+        commands = cmds.split(' ')
+        key = commands[0] + '.' + commands[1]
+        if not commands[0]:
+            print("** class name missing **")
+        elif commands[0] not in clss_list:
+            print("** class doesn't exist **")
+        elif not commands[1]:
+            print("** instance id missing **")
+        elif key not in models.storage.all():
+            print("** no instance found **")
+        else:
+            print("{}".format(models.storage.all()[key]))
+>>>>>>> main
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
