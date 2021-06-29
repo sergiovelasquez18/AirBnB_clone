@@ -9,14 +9,9 @@ class FileStorage:
     __objects = {}
 
     def all(FileStorage):
-<<<<<<< HEAD
-        """Returns the dictionar representation of __objects"""
-        print("I'm here!\n", FileStorage.__objects)
-=======
         """
         Returns the dictionar representation of __objects
         """
->>>>>>> main
         return FileStorage.__objects
 
     def new(self, obj):
