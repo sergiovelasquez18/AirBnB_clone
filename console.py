@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         """command added to avoid that an empty
         line + ENTER executes anything
         """
-        return False
+        return cmd.Cmd.postloop(self)
 
 
 if __name__ == '__main__':
