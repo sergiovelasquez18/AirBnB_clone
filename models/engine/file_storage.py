@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 import json
+from models.base_model import BaseModel
 
-
-class FileStorage():
+class FileStorage:
 
 
     __file_path = "file.json"
@@ -11,8 +11,6 @@ class FileStorage():
 
     def all(self):
         """Returns the dictionar representation of __objects"""
-        print (FileStorage.__objects)
-        print (self.__objects)
         return self.__objects
 
     def new(self, obj):
@@ -22,12 +20,11 @@ class FileStorage():
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
+        json_file = {}
+        for key in self.__objects:
+            json_file[key] = self.__objects[key].to_dict()
         with open(self.__file_path, mode="w", encoding="UTF8") as my_file:
-                json.dump(self.__objects, my_file)
-        if self.__objects:
-            print("OBJECTS EXISTE \n")
-        else:
-            print("NO EXISTE")
+                json.dump(json_file, my_file)
 
     def reload(self):
         """"
@@ -37,7 +34,7 @@ class FileStorage():
         """
         try:
             with open(self.__file_path, mode="r", encoding="UTF8") as my_file:
-                    return json.load(my_file)
+                    return json.load(self.__objects)
         except:
             pass
 

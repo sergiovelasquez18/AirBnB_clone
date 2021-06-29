@@ -29,7 +29,7 @@ class BaseModel():
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
-            # models.storage.new(self)
+            models.storage.new(self)
         
     def __str__(self):
         '''str magic method returns the characteristics of the object'''
@@ -38,13 +38,14 @@ class BaseModel():
     def save(self):
         '''updates the public instance attribute updated_at with the current datetime'''
         self.updated_at = datetime.now()
-        # storage.save()
+        models.storage.save()
 
     def to_dict(self):
         ''' returns a dictionary containing all keys/values of __dict__ of the instance'''
         new_dict = self.__dict__.copy()
         new_dict["created_at"] = str(self.created_at.isoformat())
         new_dict["updated_at"] = str(self.updated_at.isoformat())
+        new_dict["__class__"] = self.__class__.__name__
         return new_dict
 
     def create(cls, **dictionary):
