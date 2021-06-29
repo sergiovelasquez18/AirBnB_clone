@@ -37,8 +37,3 @@ class FileStorage:
                     return json.load(self.__objects)
         except:
             pass
-
-
-
-
-
