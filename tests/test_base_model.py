@@ -11,5 +11,5 @@ import models
 class Test_Base(unittest.TestCase):
     """Test class"""
 
-if __name__=='__name__':
+if __name__ == '__name__':
     unittest.main()
