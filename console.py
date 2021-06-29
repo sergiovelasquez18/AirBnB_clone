@@ -10,7 +10,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, args):
         """Ayuda del comando1"""
-        print("Hasta pronto")
         return True
 
     def do_EOF(self, args):
