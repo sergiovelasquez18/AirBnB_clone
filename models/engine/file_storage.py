@@ -6,13 +6,13 @@ from models.base_model import BaseModel
 
 class FileStorage():
 
-
-
     __file_path = "file.json"
     __objects = {}
 
     def all(FileStorage):
-        """Returns the dictionar representation of __objects"""
+        """
+        Returns the dictionar representation of __objects
+        """
         return FileStorage.__objects
 
     def new(self, obj):
@@ -25,7 +25,8 @@ class FileStorage():
         tmp_dic = {}
         for key in self.__objects:
             tmp_dic[key] = self.__objects[key].to_dict()
-        with open(FileStorage.__file_path, mode="w", encoding="UTF8") as my_file:
+        with open(FileStorage.__file_path, mode="w",
+                  encoding="UTF8") as my_file:
                 json.dump(tmp_dic, my_file)
 
     def reload(self):
@@ -35,18 +36,12 @@ class FileStorage():
         If the file doesn’t exist, no exception will be raised)
         """
         try:
-            with open(FileStorage.__file_path, mode="r", encoding="UTF8") as my_file:
+            with open(FileStorage.__file_path, mode="r",
+                      encoding="UTF8") as my_file:
                 tmp_obj = json.load(my_file)
             for keys in tmp_obj.keys():
                 class_obj = keys.split('.')
-                if class_obj[0] == 'BaseModel':
-                    self.__objects[keys] = BaseModel(**tmp_obj[keys])
-                #obj = class_obj[0] + "(**tmp_obj[keys])"
-                #self.__objects[keys] = eval(obj)
+                obj = class_obj[0] + "(**tmp_obj[keys])"
+                self.__objects[keys] = eval(obj)
         except:
             pass
-
-
-
-
-
