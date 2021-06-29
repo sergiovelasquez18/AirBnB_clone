@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
+
 
 
     __file_path = "file.json"
@@ -32,7 +34,6 @@ class FileStorage():
         JSON file(__file_path) exists otherwise, do nothing.
         If the file doesn’t exist, no exception will be raised)
         """
-        from models.base_model import BaseModel
         try:
             with open(FileStorage.__file_path, mode="r", encoding="UTF8") as my_file:
                 tmp_obj = json.load(my_file)
