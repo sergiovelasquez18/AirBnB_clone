@@ -5,7 +5,6 @@ import cmd
 from models.base_model import BaseModel
 import models
 import models.engine.file_storage
-from datetime import datetime
 
 clss_list = {'BaseModel': BaseModel}
 
@@ -111,32 +110,24 @@ class HBNBCommand(cmd.Cmd):
         attribute(save the change into the JSON file)
         """
         commands = cmds.split(' ')
-        key = commands[0] + '.' + commands[1]
-        for key in models.storage.all().keys():
-            print(key)
-        #print("imprimiento el diccionario del diccionario", models.storage.all()[key])
-
-        if len(commands) > 0:
+        print(f"commands2: {commands[2]} \ncommands3: {commands[3]}")
+        if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-            print(models.storage.all()[key]['updated_at'])
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
-        elif not commands[2]:
+        elif len(commands) < 3:
             print("** attribute name missing **")
-        elif not commands[3]:
+        elif len(commands) < 4:
             print("** value missing **")
         else:
-            models.storage[key][commands[2]] = str(commands[3])
-            models.storage.all()[key]['updated_at'] = datetime.now()
+            setattr (models.storage.all()[key], commands[2], str(commands[3]))
             models.storage.save()
-
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
