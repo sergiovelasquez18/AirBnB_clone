@@ -45,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             instance = BaseModel()
             print(instance.id)
+            print("hola")
             instance.save()
 
     def do_show(self, cmds):
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0]:
+        if not commands[0] or len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
@@ -67,10 +68,14 @@ class HBNBCommand(cmd.Cmd):
             print("{}".format(models.storage.all()[key]))
 
     def do_destroy(self, cmds):
+        """
+        Deletes an instance based on the class name
+        and id (save the change into the JSON file)
+        """
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0]:
+        if not commands[0] or len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
@@ -83,13 +88,52 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_all(self, cmds):
-        commands = cmds.split(' ')
-        print(models.storage.__objects)
+        """
+        Prints all string representation of all
+        instances based or not on the class name
+        """
         tmp_list = []
-        for key, value in models.storage.all().items():
-            print (key, value.to_dict())
-        else: #impresion general de todas las clases
-            pass
+        commands = cmds.split(' ')
+        if commands[0]:
+            if commands[0] not in clss_list:
+                print("** class doesn't exist **")
+            else:
+                for key in models.storage.all().keys():
+                    if str(commands[0]) in key:
+                        tmp_list.append(str(models.storage.all()[key]))
+                print(tmp_list)
+        else:
+            for key in models.storage.all().keys():
+                try:
+                    tmp_list.append(str(models.storage.all()[key]))
+                except:
+                    pass
+            print(tmp_list)
+
+    def do_update(self, cmds):
+        """
+        Updates an instance based on the class name and id by adding or updating
+        attribute(save the change into the JSON file)
+        """
+        commands = cmds.split(' ')
+        print(f"commands2: {commands[2]} \ncommands3: {commands[3]}")
+        if len(commands) > 1:
+            key = commands[0] + '.' + commands[1]
+        if not commands[0] and len(commands) == 1:
+            print("** class name missing **")
+        elif commands[0] not in clss_list:
+            print("** class doesn't exist **")
+        elif len(commands) < 2:
+            print("** instance id missing **")
+        elif key not in models.storage.all():
+            print("** no instance found **")
+        elif len(commands) < 3:
+            print("** attribute name missing **")
+        elif len(commands) < 4:
+            print("** value missing **")
+        else:
+            setattr (models.storage.all()[key], commands[2], str(commands[3]))
+            models.storage.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
