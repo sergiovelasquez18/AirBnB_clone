@@ -5,6 +5,12 @@ import cmd
 from models.base_model import BaseModel
 import models
 import models.engine.file_storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 clss_list = {'BaseModel': BaseModel}
 
@@ -77,13 +83,13 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_all(self, cmds):
-        #commands = cmds.split(' ')
+        commands = cmds.split(' ')
         print(models.storage.__objects)
-        """tmp_list = []
+        tmp_list = []
         for key, value in models.storage.all().items():
             print (key, value.to_dict())
         else: #impresion general de todas las clases
-            pass"""
+            pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
