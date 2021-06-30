@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0]:
+        if not commands[0] or len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
@@ -61,10 +61,14 @@ class HBNBCommand(cmd.Cmd):
             print("{}".format(models.storage.all()[key]))
 
     def do_destroy(self, cmds):
+        """
+        Deletes an instance based on the class name
+        and id (save the change into the JSON file)
+        """
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0]:
+        if not commands[0] or len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
@@ -78,11 +82,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, cmds):
         #commands = cmds.split(' ')
-        print(models.storage.__objects)
-        """tmp_list = []
+        tmp_list = []
         for key, value in models.storage.all().items():
-            print (key, value.to_dict())
-        else: #impresion general de todas las clases
+            tmp_list += key + (value.to_dict())
+        print(tmp_list)
+        """else: #impresion general de todas las clases
             pass"""
 
 if __name__ == '__main__':
