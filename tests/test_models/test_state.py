@@ -20,8 +20,8 @@ class Test_State(unittest.TestCase):
         del self.model1
         del self.model2
 
-    def test_place_save_method(self):
-        """tests proper functionin of save method"""
+    def test_state_update_method(self):
+        """check the proper working of the update method"""
 
         date1 = self.model1.updated_at
         self.model1.save()

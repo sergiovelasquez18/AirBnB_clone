@@ -20,8 +20,8 @@ class Test_FileStorage(unittest.TestCase):
         del self.model1
         del self.model2
 
-    def test_file_storage_save_method(self):
-        """tests proper functionin of save method"""
+    def test_file_storage_instances_method(self):
+        """checks if two instances are the same"""
 
         self.assertNotEqual(self.model1, self.model2)
 

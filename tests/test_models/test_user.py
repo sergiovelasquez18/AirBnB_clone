@@ -20,8 +20,8 @@ class Test_User(unittest.TestCase):
         del self.user1
         del self.user2
 
-    def test_user_save_method(self):
-        """tests proper functionin of save method"""
+    def test_user_update_method(self):
+        """check the proper working of the update method"""
 
         date1 = self.user1.updated_at
         self.user1.save()

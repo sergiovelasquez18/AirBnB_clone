@@ -20,8 +20,8 @@ class Test_Amenity(unittest.TestCase):
         del self.amenity1
         del self.amenity2
 
-    def test_amenity_save_method(self):
-        """tests proper functionin of save method"""
+    def test_amenity_update_method(self):
+        """check the proper working of the update method"""
 
         date1 = self.amenity1.updated_at
         self.amenity1.save()
