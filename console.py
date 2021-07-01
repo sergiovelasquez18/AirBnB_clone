@@ -148,7 +148,6 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split('.')
         if len(commands) > 1 and commands[1] == 'count()':
             try:
-                key = commands[1]
                 if commands[0] not in clss_list and len(commands) == 1:
                     print("** class doesn't exist **")
                 else:
