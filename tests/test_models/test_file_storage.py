@@ -3,30 +3,28 @@
 adde comment here
 """
 import unittest
-import models.base_model
+import models.engine.file_storage
 from datetime import datetime
 
 
-class Test_BaseModel(unittest.TestCase):
+class Test_FileStorage(unittest.TestCase):
     """Console methods test"""
 
     @classmethod
     def setUpClass(self):
-        self.model1 = models.base_model.BaseModel()
-        self.model2 = models.base_model.BaseModel()
+        self.model1 = models.engine.file_storage.FileStorage()
+        self.model2 = models.engine.file_storage.FileStorage()
 
     @classmethod
     def tearDownClass(self):
         del self.model1
         del self.model2
 
-
-    def test_save_method(self):
+    def test_file_storage_save_method(self):
         """tests proper functionin of save method"""
 
-        date1 = self.model1.updated_at
-        self.model1.save()
-        self.assertNotEqual(self.model1.updated_at, date1)
+        self.assertNotEqual(self.model1, self.model2)
+
 
 if __name__ == '__name__':
     unittest.main()
