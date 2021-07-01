@@ -111,8 +111,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, cmds):
         """
-        Updates an instance based on the class name and id by adding or updating
-        attribute(save the change into the JSON file)
+        Updates an instance based on the class name and id by adding or
+        updating attribute(save the change into the JSON file)
         """
         commands = cmds.split(' ')
         if len(commands) > 1:
@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(commands) < 4:
             print("** value missing **")
         else:
-            setattr (models.storage.all()[key], commands[2], str(commands[3]))
+            setattr(models.storage.all()[key], commands[2], str(commands[3]))
             models.storage.save()
 
 if __name__ == '__main__':
