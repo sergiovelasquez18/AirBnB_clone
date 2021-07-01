@@ -12,7 +12,12 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
-clss_list = {'BaseModel': BaseModel}
+clss_list = {'BaseModel': BaseModel,
+             'Amenity': Amenity,
+             'Place': Place,
+             'State': State,
+             'City': City,
+             'Review': Review}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -59,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif len(commands) <2:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
