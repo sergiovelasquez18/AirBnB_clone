@@ -14,15 +14,17 @@ def test_con_methods(self):
     """tests uncompleted console command lines"""
     self.assertEqual("show", "** class name missing **")
 
-    self.assertEqual("show BaseModel", "** class name missing **")
+    self.assertEqual("show BaseModel", "** instance id missing **")
 
     self.assertEqual("destroy", "** class name missing **")
 
-    self.assertEqual("destroy BaseModel", "** class name missing **")
+    self.assertEqual("destroy BaseModel", "** instance id missing **")
 
     self.assertEqual("update", "** class name missing **")
 
     self.assertEqual("update BaseModel", "** instance id missing **")
+
+    self.assertEqual("update Caminar", "** class doesn't exist **")
 
 if __name__ == '__name__':
     unittest.main()

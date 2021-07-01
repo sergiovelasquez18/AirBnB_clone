@@ -55,11 +55,11 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) <2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
@@ -74,11 +74,11 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
         tmp_list = []
         commands = cmds.split(' ')
         if commands[0]:
-            if commands[0] not in clss_list:
+            if commands[0] not in clss_list and len(commands) == 1:
                 print("** class doesn't exist **")
             else:
                 for key in models.storage.all().keys():
