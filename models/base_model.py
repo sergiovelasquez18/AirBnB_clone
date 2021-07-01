@@ -22,10 +22,10 @@ class BaseModel():
                     pass
                 elif key == 'created_at':
                     self.created_at = datetime.strptime(
-                                                value, '%Y-%m-%dT%H:%M:%S.%f')
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
                 elif key == 'updated_at':
                     self.updated_at = datetime.strptime(
-                                                value, '%Y-%m-%dT%H:%M:%S.%f')
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
                 else:
                     setattr(self, key, value)
         else:
@@ -35,9 +35,12 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        '''str magic method returns the characteristics of the object'''
+        '''
+        str magic method returns the
+        characteristics of the object
+        '''
         return "[{}] ({}) {}".format(self.__class__.__name__,
-                                       self.id, self.__dict__)
+                                     self.id, self.__dict__)
 
     def save(self):
         '''
