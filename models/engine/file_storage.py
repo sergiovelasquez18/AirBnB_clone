@@ -2,6 +2,13 @@
 
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 class FileStorage:
 
@@ -26,7 +33,6 @@ class FileStorage:
             tmp_dic[key] = self.__objects[key].to_dict()
         with open(FileStorage.__file_path, mode="w",
                   encoding="UTF8") as my_file:
-            print("Json")
             json.dump(tmp_dic, my_file)
 
     def reload(self):

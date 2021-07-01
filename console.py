@@ -5,9 +5,20 @@ import cmd
 from models.base_model import BaseModel
 import models
 import models.engine.file_storage
-from datetime import datetime
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
-clss_list = {'BaseModel': BaseModel}
+clss_list = {'BaseModel': BaseModel(),
+             'Amenity': Amenity(),
+             'Place': Place(),
+             'State': State(),
+             'City': City(),
+             'Review': Review(),
+             'User': User()}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -38,9 +49,8 @@ class HBNBCommand(cmd.Cmd):
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
         else:
-            instance = BaseModel()
+            instance = clss_list[commands[0]]
             print(instance.id)
-            print("hola")
             instance.save()
 
     def do_show(self, cmds):
@@ -51,11 +61,11 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
@@ -70,11 +80,11 @@ class HBNBCommand(cmd.Cmd):
         commands = cmds.split(' ')
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
@@ -90,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
         tmp_list = []
         commands = cmds.split(' ')
         if commands[0]:
-            if commands[0] not in clss_list:
+            if commands[0] not in clss_list and len(commands) == 1:
                 print("** class doesn't exist **")
             else:
                 for key in models.storage.all().keys():
@@ -107,36 +117,46 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, cmds):
         """
-        Updates an instance based on the class name and id by adding or updating
-        attribute(save the change into the JSON file)
+        Updates an instance based on the class name and id by adding or
+        updating attribute(save the change into the JSON file)
         """
         commands = cmds.split(' ')
-        key = commands[0] + '.' + commands[1]
-        for key in models.storage.all().keys():
-            print(key)
-        #print("imprimiento el diccionario del diccionario", models.storage.all()[key])
-
-        if len(commands) > 0:
+        if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
-            print(models.storage.all()[key]['updated_at'])
-        if not commands[0] or len(commands) == 1:
+        if not commands[0] and len(commands) == 1:
             print("** class name missing **")
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
-        elif not commands[1]:
+        elif len(commands) < 2:
             print("** instance id missing **")
         elif key not in models.storage.all():
             print("** no instance found **")
-        elif not commands[2]:
+        elif len(commands) < 3:
             print("** attribute name missing **")
-        elif not commands[3]:
+        elif len(commands) < 4:
             print("** value missing **")
         else:
-            models.storage[key][commands[2]] = str(commands[3])
-            models.storage.all()[key]['updated_at'] = datetime.now()
+            setattr(models.storage.all()[key], commands[2], str(commands[3]))
             models.storage.save()
 
-
+    def default(self, cmds):
+        """
+        ) to retrieve the number of instances of a class usign
+        the following format: <class name>.count()
+        """
+        sum_obj = 0
+        commands = cmds.split('.')
+        if len(commands) > 1 and commands[1] == 'count()':
+            try:
+                if commands[0] not in clss_list and len(commands) == 1:
+                    print("** class doesn't exist **")
+                else:
+                    for key in models.storage.all().keys():
+                        if str(commands[0]) in key:
+                            sum_obj += 1
+                    print(sum_obj)
+            except:
+                pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
