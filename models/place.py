@@ -3,19 +3,18 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-	"""
-	This class inherits from base models
-	eleven public attributes are created
-	"""
-	city_id = ""
-	user_id = ""
-	name = ""
-	description = ""
-	number_bathrooms = ""
-	number_bathrooms = ""
-	max_guest = ""
-	price_by_night = ""
-	latitude = ""
-	longitude = ""
-	amenity_ids = ""
-
+    """
+    This class inherits from base models
+    eleven public attributes are created
+    """
+    city_id = ""
+    user_id = ""
+    name = ""
+    description = ""
+    number_bathrooms = ""
+    number_bathrooms = ""
+    max_guest = ""
+    price_by_night = ""
+    latitude = ""
+    longitude = ""
+    amenity_ids = ""
