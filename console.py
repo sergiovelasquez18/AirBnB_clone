@@ -17,7 +17,8 @@ clss_list = {'BaseModel': BaseModel,
              'Place': Place,
              'State': State,
              'City': City,
-             'Review': Review}
+             'Review': Review,
+             'User': User}
 
 
 class HBNBCommand(cmd.Cmd):
