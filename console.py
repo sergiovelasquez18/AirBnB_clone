@@ -12,14 +12,14 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
-clss_list = {'BaseModel': BaseModel,
-             'Amenity': Amenity,
-             'Place': Place,
-             'State': State,
-             'City': City,
-             'Review': Review,
-             'User': User}
- 
+clss_list = {'BaseModel': BaseModel(),
+             'Amenity': Amenity(),
+             'Place': Place(),
+             'State': State(),
+             'City': City(),
+             'Review': Review(),
+             'User': User()}
+
 
 class HBNBCommand(cmd.Cmd):
     """HBNBcosole"""
@@ -49,7 +49,8 @@ class HBNBCommand(cmd.Cmd):
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
         else:
-            instance = BaseModel()
+            print(commands[0])
+            instance = clss_list[commands[0]]
             print(instance.id)
             instance.save()
 
