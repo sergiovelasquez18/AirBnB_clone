@@ -157,6 +157,19 @@ class HBNBCommand(cmd.Cmd):
                     print(sum_obj)
             except:
                 pass
+        if len(commands) > 1 and commands[1] == 'all()':
+            try:
+                if commands[0] not in clss_list and len(commands) == 1:
+                    print("** class doesn't exist **")
+                else:
+                    tmp_list = []
+                    for key in models.storage.all().keys():
+                        if str(commands[0]) in key:
+                            tmp_list.append(str(models.storage.all()[key]))
+                    print(tmp_list)
+            except:
+                pass
+            
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
