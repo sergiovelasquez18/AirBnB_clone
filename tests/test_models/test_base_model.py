@@ -20,7 +20,6 @@ class Test_BaseModel(unittest.TestCase):
         del self.model1
         del self.model2
 
-
     def test_save_method(self):
         """tests proper functionin of save method"""
 
