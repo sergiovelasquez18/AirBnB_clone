@@ -45,7 +45,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             instance = BaseModel()
             print(instance.id)
-            print("hola")
             instance.save()
 
     def do_show(self, cmds):
@@ -116,7 +115,6 @@ class HBNBCommand(cmd.Cmd):
         attribute(save the change into the JSON file)
         """
         commands = cmds.split(' ')
-        print(f"commands2: {commands[2]} \ncommands3: {commands[3]}")
         if len(commands) > 1:
             key = commands[0] + '.' + commands[1]
         if not commands[0] and len(commands) == 1:
