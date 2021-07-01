@@ -7,7 +7,7 @@ import models.base_model
 from datetime import datetime
 
 
-class Test_Console(unittest.TestCase):
+class Test_BaseModel(unittest.TestCase):
     """Console methods test"""
 
     @classmethod
@@ -19,7 +19,6 @@ class Test_Console(unittest.TestCase):
     def tearDownClass(self):
         del self.model1
         del self.model2
-
 
     def test_save_method(self):
         """tests proper functionin of save method"""

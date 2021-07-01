@@ -3,16 +3,26 @@
 adde comment here
 """
 import unittest
-import models
+import models.amenity
+from datetime import datetime
 
 
-class Test_amenity(unittest.TestCase):
+class Test_Amenity(unittest.TestCase):
     """Console methods test"""
 
+    @classmethod
+    def setUpClass(self):
+        self.amenity1 = models.amenity.Amenity()
+        self.amenity2 = models.amenity.Amenity()
 
-def test_con_methods(self):
-    """tests uncompleted console command lines"""
+    @classmethod
+    def tearDownClass(self):
+        del self.amenity1
+        del self.amenity2
 
+    def test_amenity_save_method(self):
+        """tests proper functionin of save method"""
 
-if __name__ == '__name__':
-    unittest.main()
+        date1 = self.amenity1.updated_at
+        self.amenity1.save()
+        self.assertNotEqual(self.amenity1.updated_at, date1)

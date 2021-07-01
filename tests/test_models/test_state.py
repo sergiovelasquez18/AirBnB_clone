@@ -3,15 +3,29 @@
 adde comment here
 """
 import unittest
-import models
+import models.state
+from datetime import datetime
 
 
-class Test_state(unittest.TestCase):
+class Test_State(unittest.TestCase):
     """Console methods test"""
 
+    @classmethod
+    def setUpClass(self):
+        self.model1 = models.state.State()
+        self.model2 = models.state.State()
 
-def test_con_methods(self):
-    """tests uncompleted console command lines"""
+    @classmethod
+    def tearDownClass(self):
+        del self.model1
+        del self.model2
+
+    def test_place_save_method(self):
+        """tests proper functionin of save method"""
+
+        date1 = self.model1.updated_at
+        self.model1.save()
+        self.assertNotEqual(self.model1.updated_at, date1)
 
 
 if __name__ == '__name__':

@@ -19,7 +19,7 @@ clss_list = {'BaseModel': BaseModel,
              'City': City,
              'Review': Review,
              'User': User}
-
+ 
 
 class HBNBCommand(cmd.Cmd):
     """HBNBcosole"""
