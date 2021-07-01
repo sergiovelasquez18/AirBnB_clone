@@ -57,9 +57,3 @@ class BaseModel():
         new_dict["updated_at"] = str(self.updated_at.isoformat())
         new_dict["__class__"] = self.__class__.__name__
         return new_dict
-
-    def create(cls, **dictionary):
-        '''returns an instance with all attributes already set'''
-        temp_inst = cls(1)
-        temp_inst.update(**dictionary)
-        return temp_inst
