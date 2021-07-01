@@ -139,5 +139,25 @@ class HBNBCommand(cmd.Cmd):
             setattr(models.storage.all()[key], commands[2], str(commands[3]))
             models.storage.save()
 
+    def default(self, cmds):
+        """
+        ) to retrieve the number of instances of a class usign
+        the following format: <class name>.count()
+        """
+        sum_obj = 0
+        commands = cmds.split('.')
+        if len(commands) > 1 and commands[1] == 'count()':
+            try:
+                key = commands[1]
+                if commands[0] not in clss_list and len(commands) == 1:
+                    print("** class doesn't exist **")
+                else:
+                    for key in models.storage.all().keys():
+                        if str(commands[0]) in key:
+                            sum_obj += 1
+                    print(sum_obj)
+            except:
+                pass
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
