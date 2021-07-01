@@ -6,7 +6,7 @@ import unittest
 import models
 
 
-class Test_place(unittest.TestCase):
+class Test_state(unittest.TestCase):
     """Console methods test"""
 
 
