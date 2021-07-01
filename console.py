@@ -49,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
         elif commands[0] not in clss_list:
             print("** class doesn't exist **")
         else:
-            print(commands[0])
             instance = clss_list[commands[0]]
             print(instance.id)
             instance.save()
