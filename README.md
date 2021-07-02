@@ -27,14 +27,14 @@ Interactive mode
 
 | COMMAND | SYNTAX | DESCRPTION |
 | --- | --- | --- |
-| hbnb) quit | `quit` | Exit the console |
+| (hbnb) quit | `quit` | Exit the console |
 | (hbnb) EOF | `EOF` | Exit command interpreter |
-| (hbnb) help | `help <option>` | Displays available commands |
-| (hbnb) create | `create ` | create an object and print id |
-| (hbnb) show | `show ` | displays information about an object |
-| (hbnb) destroy | `destroy  `| destroys the object |
-| (hbnb) all | `all`| Displays all instances of a class  |
-| (hbnb) update | `update` | updates an instance of a class  |
+| (hbnb) help | `help <command>` | Displays available commands |
+| (hbnb) create | `create <class>` | create an object and print id |
+| (hbnb) show | `show <class> <id>` | displays information about an object |
+| (hbnb) destroy | `destroy <lass>`| destroys the object |
+| (hbnb) all | `all <class>`| Displays all instances of a class  |
+| (hbnb) update | `update <class> <id> <attribute name> < attribute value>` | updates an instance of a class  |
 
 ### Example
 ```
@@ -78,9 +78,9 @@ $
 ## Execution of tests
 To run the unit tests of this project, the following command must be executed: `python3 -m unittest discover tests`
 
-## Envioremnet
-* Language: Python3
-* OS: 
+## Enviroment
+* Language: [Python3](https://www.python.org/download/releases/3.0/)
+* OS: Ubuntu 20.04 LTS
 * style guide: [PEP 8 (version 1.7.0)](https://www.python.org/dev/peps/pep-0008/)
 
 ## Author
