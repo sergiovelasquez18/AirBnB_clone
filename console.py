@@ -185,11 +185,10 @@ class HBNBCommand(cmd.Cmd):
                 pass
         if len(commands) > 1 and commands[1][0:6] == 'update':
             try:
+                print(commands[1][0:6])
                 get_id = commands[1].index('\"')
-                field = commands[1].split("\"")
-                cmds = commands[0] + " " + field[1] + " " + field[3]
-                + " " + "\"" + field[5] + "\""
-                print(cmds)
+                fl = commands[1].split("\"")
+                cmds = (commands[0] + " " + fl[1] + " " + fl[3] + " " + fl[5])
                 HBNBCommand.do_update(self, str(cmds))
             except:
                 pass
