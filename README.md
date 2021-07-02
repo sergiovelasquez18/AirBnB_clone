@@ -23,6 +23,7 @@ cd AirBnB_clone
 ### Usage
 As in the Shell project, the console works in both interactive and non-interactive mode.
 In interactive mode, a prompt is printed which will wait for user input.
+
 Interactive mode
 
 | COMMAND | SYNTAX | DESCRPTION |
