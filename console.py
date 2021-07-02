@@ -183,6 +183,16 @@ class HBNBCommand(cmd.Cmd):
                 HBNBCommand.do_destroy(self, str(cmds))
             except:
                 pass
+        if len(commands) > 1 and commands[1][0:6] == 'update':
+            try:
+                get_id = commands[1].index('\"')
+                field = commands[1].split("\"")
+                cmds = commands[0] + " " + field[1] + " " + field[3]
+                + " " + "\"" + field[5] + "\""
+                print(cmds)
+                HBNBCommand.do_update(self, str(cmds))
+            except:
+                pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
