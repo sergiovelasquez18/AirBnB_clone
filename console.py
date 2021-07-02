@@ -176,6 +176,13 @@ class HBNBCommand(cmd.Cmd):
                 HBNBCommand.do_show(self, str(cmds))
             except:
                 pass
+        if len(commands) > 1 and commands[1][0:7] == 'destroy':
+            try:
+                get_id = commands[1].index('\"')
+                cmds = commands[0] + " " + commands[1][(get_id + 1):-2]
+                HBNBCommand.do_destroy(self, str(cmds))
+            except:
+                pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
