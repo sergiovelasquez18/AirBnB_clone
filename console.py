@@ -171,8 +171,8 @@ class HBNBCommand(cmd.Cmd):
                 pass
         if len(commands) > 1 and commands[1][0:4] == 'show':
             try:
-                key = commands[0][0:4] + "." + commands[1][6:-2]
-                print(key)
+                get_id = commands[1].index('\"')
+                key = commands[0] + "." + commands[1][(get_id + 1):-2]
                 print("{}".format(models.storage.all()[key]))
             except:
                 pass
