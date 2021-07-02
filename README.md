@@ -24,7 +24,7 @@ cd AirBnB_clone
 As in the Shell project, the console works in both interactive and non-interactive mode.
 In interactive mode, a prompt is printed which will wait for user input.
 
-Interactive mode
+* Interactive mode
 
 | COMMAND | SYNTAX | DESCRPTION |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ EOF  help  quit
 (hbnb) quit
 $
 ```
-Non-Interactive mode
+* Non-Interactive mode
 ```
 $ echo "help" | ./console.py
 (hbnb)
