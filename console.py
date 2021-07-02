@@ -172,11 +172,10 @@ class HBNBCommand(cmd.Cmd):
         if len(commands) > 1 and commands[1][0:4] == 'show':
             try:
                 get_id = commands[1].index('\"')
-                key = commands[0] + "." + commands[1][(get_id + 1):-2]
-                print("{}".format(models.storage.all()[key]))
+                cmds = commands[0] + " " + commands[1][(get_id + 1):-2]
+                HBNBCommand.do_show(self, str(cmds))
             except:
                 pass
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
