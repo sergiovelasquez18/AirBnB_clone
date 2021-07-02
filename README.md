@@ -76,7 +76,7 @@ $
 ---
 
 ## Execution of tests
-To run the unit tests of this project, the following command must be executed: python3 -m unittest discover tests
+To run the unit tests of this project, the following command must be executed: `python3 -m unittest discover tests`
 
 ## Envioremnet
 * Language: Python3
