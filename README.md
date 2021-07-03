@@ -7,9 +7,12 @@ the first step for this project is to make a command interpreter.
 
 ### The command interpreter
 
-So far the command interpreter is capable of:
-* create a new object
-* destroy an object
+Functionalities of this command interpreter
+* Create a new object (ex: a new User or a new Place)
+* Retrieve an object from a file, a database etc…
+* Do operations on objects (count, compute stats, etc…)
+* Update attributes of an object
+* Destroy an object
 
 ### Instalation
 ```
@@ -18,18 +21,21 @@ cd AirBnB_clone
 ```
 
 ### Usage
-Interactive mode
+As in the Shell project, the console works in both interactive and non-interactive mode.
+In interactive mode, a prompt is printed which will wait for user input.
 
-| COMMAND | DESCRPTION |
-| --- | --- |
-| `(hbnb) quit` | Exit the console |
-| `(hbnb) quit` | Exit command interpreter |
-| `(hbnb) help` | Displays available commands |
-| `(hbnb) create` | """ |
-| `(hbnb) show` | """ |
-| `(hbnb) destroy` | """ |
-| `(hbnb) all` | """ |
-| `(hbnb) update` | """ |
+* Interactive mode
+
+| COMMAND | SYNTAX | DESCRPTION |
+| --- | --- | --- |
+| (hbnb) quit | `quit` | Exit the console |
+| (hbnb) EOF | `EOF` | Exit command interpreter |
+| (hbnb) help | `help <command>` | Displays available commands |
+| (hbnb) create | `create <class>` | create an object and print id |
+| (hbnb) show | `show <class> <id>` | displays information about an object |
+| (hbnb) destroy | `destroy <lass>`| destroys the object |
+| (hbnb) all | `all <class>`| Displays all instances of a class  |
+| (hbnb) update | `update <class> <id> <attribute name> < attribute value>` | updates an instance of a class  |
 
 ### Example
 ```
@@ -45,7 +51,7 @@ EOF  help  quit
 (hbnb) quit
 $
 ```
-Non-Interactive mode
+* Non-Interactive mode
 ```
 $ echo "help" | ./console.py
 (hbnb)
@@ -71,12 +77,12 @@ $
 ---
 
 ## Execution of tests
-To run the unit tests of this project, the following command must be executed: python3 -m unittest discover tests
+To run the unit tests of this project, the following command must be executed: `python3 -m unittest discover tests`
 
-## Done in
-* Language: Python3
-* OS:
-* style guide: PEP 8
+## Enviroment
+* Language: [Python3](https://www.python.org/download/releases/3.0/)
+* OS: Ubuntu 20.04 LTS
+* style guide: [PEP 8 (version 1.7.0)](https://www.python.org/dev/peps/pep-0008/)
 
 ## Author
 * **Esneider Granada Valencia** - [sneidergv](https://github.com/sneidergv)
