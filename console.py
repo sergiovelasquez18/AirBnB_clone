@@ -11,6 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+import ast
 
 clss_list = {'BaseModel': BaseModel(),
              'Amenity': Amenity(),
@@ -184,14 +185,29 @@ class HBNBCommand(cmd.Cmd):
             except:
                 pass
         if len(commands) > 1 and commands[1][0:6] == 'update':
-            try:
-                print(commands[1][0:6])
-                get_id = commands[1].index('\"')
-                fl = commands[1].split("\"")
-                cmds = (commands[0] + " " + fl[1] + " " + fl[3] + " " + fl[5])
-                HBNBCommand.do_update(self, str(cmds))
-            except:
-                pass
+            if '{' in commands[1]:
+                try:
+                    update_dict = {}
+                    get_ini_dict = commands[1].index('{')
+                    get_end_dict = commands[1].index('}')
+                    temp_dict = commands[1][get_ini_dict:get_end_dict + 1]
+                    update_dict = ast.literal_eval(temp_dict)
+                    fl = commands[1].split('\"')
+                    for key in update_dict.keys():
+                        cmds = (commands[0] + " " + fl[1] + " " + key +
+                                " " + update_dict[key])
+                        HBNBCommand.do_update(self, str(cmds))
+                except:
+                    pass
+            else:
+                try:
+                    get_id = commands[1].index('\"')
+                    fl = commands[1].split("\"")
+                    cmds = (commands[0] + " " + fl[1] +
+                            " " + fl[3] + " " + fl[5])
+                    HBNBCommand.do_update(self, str(cmds))
+                except:
+                    pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
