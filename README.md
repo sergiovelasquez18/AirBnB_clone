@@ -20,7 +20,7 @@ git clone https://github.com/sneidergv/AirBnB_clone.git
 cd AirBnB_clone
 ```
 
-### Usage
+## Usage
 As in the Shell project, the console works in both interactive and non-interactive mode.
 In interactive mode, a prompt is printed which will wait for user input.
 
